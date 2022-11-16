@@ -61,23 +61,7 @@ function createDiv() {
 }
 
 btnSucc.addEventListener("click", function () {
-  const oldImgEl = document.querySelector(
-    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
-  );
-  oldImgEl.classList.remove("d-block");
-
-  console.log("old", oldImgEl);
-
-  imgIndex++;
-  if (imgIndex > imgsArray.length - 1) {
-    imgIndex = 0;
-  }
-  const newImg = document.querySelector(
-    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
-  );
-  newImg.classList.add("d-block");
-
-  console.log("new", newImg);
+  changeImgs();
 });
 
 btnPrev.addEventListener("click", function () {
@@ -95,4 +79,24 @@ btnPrev.addEventListener("click", function () {
     `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
   );
   newImg.classList.add("d-block");
+});
+
+function changeImgs() {
+  const oldImgEl = document.querySelector(
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
+  );
+  oldImgEl.classList.remove("d-block");
+
+  imgIndex++;
+  if (imgIndex > imgsArray.length - 1) {
+    imgIndex = 0;
+  }
+  const newImg = document.querySelector(
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
+  );
+  newImg.classList.add("d-block");
+}
+
+autoPlay.addEventListener("click", function () {
+  setInterval(changeImgs, 1000);
 });
