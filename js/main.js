@@ -2,6 +2,7 @@ const containerEl = document.querySelector(".imgs-container");
 const btnPrev = document.querySelector(".btn-danger");
 const btnSucc = document.querySelector(".btn-primary");
 const autoPlay = document.querySelector(".btn-success");
+const stopPlay = document.querySelector(".btn-dark");
 let imgsArray = [
   {
     image: "imgs/01.webp",
@@ -97,6 +98,18 @@ function changeImgs() {
   newImg.classList.add("d-block");
 }
 
+function interval(a, b) {
+  set = setInterval(a, b);
+}
+
+function stopInterval(a) {
+  clearInterval(a);
+}
+
 autoPlay.addEventListener("click", function () {
-  setInterval(changeImgs, 1000);
+  interval(changeImgs, 1000);
+});
+
+stopPlay.addEventListener("click", function () {
+  stopInterval(set);
 });
