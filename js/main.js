@@ -3,6 +3,7 @@ const btnPrev = document.querySelector(".btn-danger");
 const btnSucc = document.querySelector(".btn-primary");
 const autoPlay = document.querySelector(".btn-success");
 const stopPlay = document.querySelector(".btn-dark");
+const reversePlay = document.querySelector(".btn-info");
 let imgsArray = [
   {
     image: "imgs/01.webp",
@@ -66,20 +67,7 @@ btnSucc.addEventListener("click", function () {
 });
 
 btnPrev.addEventListener("click", function () {
-  const oldImgEl = document.querySelector(
-    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
-  );
-  oldImgEl.classList.remove("d-block");
-
-  imgIndex--;
-
-  if (imgIndex < 0) {
-    imgIndex = imgsArray.length - 1;
-  }
-  const newImg = document.querySelector(
-    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
-  );
-  newImg.classList.add("d-block");
+  reverseImgs();
 });
 
 function changeImgs() {
@@ -91,6 +79,23 @@ function changeImgs() {
   imgIndex++;
   if (imgIndex > imgsArray.length - 1) {
     imgIndex = 0;
+  }
+  const newImg = document.querySelector(
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
+  );
+  newImg.classList.add("d-block");
+}
+
+function reverseImgs() {
+  const oldImgEl = document.querySelector(
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
+  );
+  oldImgEl.classList.remove("d-block");
+
+  imgIndex--;
+
+  if (imgIndex < 0) {
+    imgIndex = imgsArray.length - 1;
   }
   const newImg = document.querySelector(
     `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
@@ -112,4 +117,8 @@ autoPlay.addEventListener("click", function () {
 
 stopPlay.addEventListener("click", function () {
   stopInterval(set);
+});
+
+reversePlay.addEventListener("click", function () {
+  interval(reverseImgs, 1000);
 });
