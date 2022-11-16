@@ -29,7 +29,7 @@ let imgsArray = [
   },
 ];
 let imgEl;
-
+let imgIndex = 0;
 createDiv();
 
 function createDiv() {
@@ -58,7 +58,7 @@ function createDiv() {
     textDiv.append(descEl);
   }
 }
-let imgIndex = 0;
+
 btnSucc.addEventListener("click", function () {
   const oldImgEl = document.querySelector(
     `.imgs-container :nth-child(${imgIndex + 1})`
