@@ -1,6 +1,7 @@
 const containerEl = document.querySelector(".imgs-container");
 const btnPrev = document.querySelector(".btn-danger");
 const btnSucc = document.querySelector(".btn-primary");
+const autoPlay = document.querySelector(".btn-success");
 let imgsArray = [
   {
     image: "imgs/01.webp",
@@ -61,22 +62,27 @@ function createDiv() {
 
 btnSucc.addEventListener("click", function () {
   const oldImgEl = document.querySelector(
-    `.imgs-container :nth-child(${imgIndex + 1})`
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
   );
   oldImgEl.classList.remove("d-block");
+
+  console.log("old", oldImgEl);
+
   imgIndex++;
   if (imgIndex > imgsArray.length - 1) {
     imgIndex = 0;
   }
   const newImg = document.querySelector(
-    `.imgs-container :nth-child(${imgIndex + 1})`
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
   );
   newImg.classList.add("d-block");
+
+  console.log("new", newImg);
 });
 
 btnPrev.addEventListener("click", function () {
   const oldImgEl = document.querySelector(
-    `.imgs-container :nth-child(${imgIndex + 1})`
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
   );
   oldImgEl.classList.remove("d-block");
 
@@ -86,7 +92,7 @@ btnPrev.addEventListener("click", function () {
     imgIndex = imgsArray.length - 1;
   }
   const newImg = document.querySelector(
-    `.imgs-container :nth-child(${imgIndex + 1})`
+    `.imgs-container .position-relative:nth-child(${imgIndex + 1})`
   );
   newImg.classList.add("d-block");
 });
